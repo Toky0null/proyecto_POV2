@@ -18,20 +18,18 @@ import view.Game1;
  */
 //Clase del Controlador (Controller)
 public class GameController {
-    GameModel model;
-    //private GameView view;
+    private GameModel model;
+    private Game1 view;
     // Agrega más atributos según sea necesario
     //(GameModel model, GameView view)
 
     public GameController(GameModel model) {
-        this.model = model;
-        //this.view = view;
-        // Configura los Listeners y maneja la interacción del usuario
-
+        this.model = model;  
         
-        
-      
-        
+    }
+    
+     public void setView(Game1 view) {
+        this.view = view;
     }
 
     // Métodos para controlar eventos de usuario
@@ -59,11 +57,17 @@ public class GameController {
     
     public void showGame(GameModel model){ 
        Game1 gameWindow = new Game1(this,model);
+       this.view = gameWindow;
        gameWindow.setVisible(true);
        System.out.println("El juego ha iniciado");
     }
     
- 
+    public void updateGame(){
+    
+    view.updateComponent();
+    model.setUpdateInterval(2500);
+    
+    }
 
     
 }

@@ -32,6 +32,7 @@ public class InitialWindow extends JFrame {
         initialWindowGame();   
         model = new GameModel();
         controller = new  GameController(model);
+        model.setController(controller);
 
     }
 
@@ -118,12 +119,17 @@ public class InitialWindow extends JFrame {
 
     public void initialWindowGame() {
         init.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-               // playerT = TFname.getText();
-                
-                controller.showGame(model);
-            }
-        });
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            // Mostrar la cuenta regresivas
+            
+            // Una vez que la cuenta regresiva termine, mostrar Game1
+            Game1 gameView = new Game1(controller, model);
+            controller.setView(gameView); // Establece la vista en el controlador
+            gameView.setVisible(true);
+            System.out.println("El juego ha iniciado");
+            model.startGame();
+        }
+    });
     }  
 }
